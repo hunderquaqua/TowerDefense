@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
 
 
 
-    private void Start()
+    private void Start()      // Вызывается при старте игры
     {
         enemy = GetComponent<Transform>();
         enemyCollider = GetComponent<Collider2D>();
@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private void Update()
+    private void Update()     // Вызывается каждый кадр
     {
         if (wayPoints != null && isDead == false)
         {
@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) // Смена направления движения при достижении определенных точек на карте
     {
         if (collision.tag == "MovingPoints")
         {
@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void EnemyHit(int hitPoints)
+    public void EnemyHit(int hitPoints) // Проверяет, умирает ли враг после удара
     {
         if (health - hitPoints > 0)
         {
@@ -107,7 +107,7 @@ public class Enemy : MonoBehaviour
         
     }
 
-    public void Death ()
+    public void Death () // Фунция для проверки состояния врага и измнения его атрибутов
     {
         isDead = true;
         enemyCollider.enabled = false;
