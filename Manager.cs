@@ -50,7 +50,8 @@ public class Manager : Loader<Manager>
     public List<Enemy> EnemyList = new List<Enemy>();
 
 
-    const float spawnDelay = 0.5F;
+    const float spawnDelay = 0.5F; //Переменная, содержащая в себе длительность паузы после каждого спауна
+    // Геттеры для переменных
 
     public int TotalEscaped
     {
@@ -106,8 +107,8 @@ public class Manager : Loader<Manager>
     }
 
     
-
-    IEnumerator Spawn ()
+    
+    IEnumerator Spawn () // Отвечает за спаун врагов (какие враги и сколько их)
     {
         if (enemiesPerSpawn > 0 && EnemyList.Count < totalEnemies)
         {
@@ -124,18 +125,18 @@ public class Manager : Loader<Manager>
         }
     }
 
-    public void RegisterEnemy(Enemy enemy)         // Registers enemies 
+    public void RegisterEnemy(Enemy enemy)         // Регистрирует врагов в List
     {
         EnemyList.Add(enemy);
     }
 
-    public void UnregisterEnemy(Enemy enemy)         // Registers enemies 
+    public void UnregisterEnemy(Enemy enemy)         // Удаляет врагов из List
     {
         EnemyList.Remove(enemy);
         Destroy(enemy.gameObject);
     }
 
-    public void DestroyEnemies()
+    public void DestroyEnemies()                    // Уничтожение обхекта Enemy
     {
         foreach(Enemy enemy in EnemyList)
         {
@@ -162,17 +163,17 @@ public class Manager : Loader<Manager>
 
     }
 
-    public void addMoney (int amount)
+    public void addMoney (int amount)       // Пополняет счет при убийстве
     {
         TotalMoney += amount;
     }
    
-    public void subtractMoney (int amount)
+    public void subtractMoney (int amount)  // Снимает очки за побег
     {
         TotalMoney -= amount;
     }
 
-    public void IsWaveOver()
+    public void IsWaveOver()        // Проверка на то, закончилась волна, переход на следущую волну
     {
         totalEscapedLabel.text = "Escaped " + TotalEscaped + "/" + totalEnemies;
 
@@ -187,7 +188,7 @@ public class Manager : Loader<Manager>
         }
     }
     
-    public void SetCurrentGameState()
+    public void SetCurrentGameState()  // Состояние игры (победа, конец, начать игру)
     {
         if (totalEscaped >= totalEnemies)
         {
@@ -207,7 +208,7 @@ public class Manager : Loader<Manager>
         }
     }
 
-    public void PlayButtonPressed ()
+    public void PlayButtonPressed ()  // Вызывается после нажатия Play, устанавливает все начальные значения
     {
         switch (currentState)
         {
@@ -238,7 +239,7 @@ public class Manager : Loader<Manager>
         playBtn.gameObject.SetActive(false);
     }
 
-     public void ShowMenu ()
+     public void ShowMenu ()        // Меню
     {
         switch (currentState)
         {
